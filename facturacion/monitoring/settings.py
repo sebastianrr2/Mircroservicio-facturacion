@@ -77,8 +77,6 @@ DATABASES = {
         'NAME': 'facturas_db',
         'HOST': '10.128.0.12',  # Cambia esto al host de tu base de datos MongoDB
         'PORT': '27017',  # Cambia esto al puerto de tu base de datos MongoD
-        'USER': 'facturas',
-        'PASSWORD': 'isis2503',
     }
 }
 
