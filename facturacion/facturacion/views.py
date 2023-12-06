@@ -8,14 +8,14 @@ import json
 
 def FacturacionList(request):
     queryset = Facturacion.objects.all()
-    context = list(queryset.values('id', 'name'))
+    context = list(queryset.values('id_factura', 'cedulapaciente', 'objetosfactura', 'costototal', 'iva'))
     return JsonResponse(context, safe=False)
 
 def FacturacionCreate(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         
-        id_factura = data.get("id", None)
+        id_factura = data.get("id_factura", None)
         cedula_paciente = data.get("cedulapaciente", None)
         objetos_factura = data.get("objetosfactura", [])
         costo_total = data.get("costototal", None)
