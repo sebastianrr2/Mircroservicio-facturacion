@@ -1,6 +1,6 @@
 from django.db import models
 
-class Factura(models.Model):
+class Facturacion(models.Model):
     id_factura = models.IntegerField(primary_key=True)
     cedula_paciente = models.IntegerField()
     objetos_factura = models.TextField()  # Puedes almacenar la lista de objetos como un texto, por ejemplo JSON
