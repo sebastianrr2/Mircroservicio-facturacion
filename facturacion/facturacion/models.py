@@ -1,11 +1,12 @@
 from django.db import models
 
-class Facturacion(models.Model):
-    paciente_id = models.CharField(max_length=100)  # Campo para almacenar el ID o información del paciente
-    medico_id = models.CharField(max_length=100)    # Campo para almacenar el ID o información del médico
-    fecha_emision = models.DateField(auto_now_add=True)
-    total = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
-    # Otros campos para la información de la factura médica.
+class Factura(models.Model):
+    id_factura = models.IntegerField(primary_key=True)
+    cedula_paciente = models.IntegerField()
+    objetos_factura = models.TextField()  # Puedes almacenar la lista de objetos como un texto, por ejemplo JSON
+    costo_total = models.IntegerField()
+    iva = models.IntegerField()
 
     def __str__(self):
-        return f"Factura Médica #{self.pk}"
+        return f"Factura #{self.id_factura} - Paciente: {self.cedula_paciente}"
+
