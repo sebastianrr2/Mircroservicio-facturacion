@@ -71,14 +71,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'monitoring.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'facturas_db',
-        'HOST': '10.128.0.12',  # Cambia esto al host de tu base de datos MongoDB
-        'PORT': '27017',  # Cambia esto al puerto de tu base de datos MongoD
-    }
-}
 
 
 
@@ -102,7 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
+# https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -116,15 +108,10 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
+# https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-MEDIA_URL = '/media/'
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+
+# MongoDB Atlas Config
+MONGO_CLI = os.environ['MONGO_CLIENT']
