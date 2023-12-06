@@ -13,9 +13,25 @@ def FacturacionList(request):
 
 def FacturacionCreate(request):
     if request.method == 'POST':
-        data = request.body.decode('utf-8')
-        data_json = json.loads(data)
-        facturacion = Facturacion()
-        facturacion.name = data_json["name"]
-        facturacion.save()
-        return HttpResponse("successfully created a facturacion")
+        data = json.loads(request.body)
+        
+        id_factura = data.get("id", None)
+        cedula_paciente = data.get("cedulapaciente", None)
+        objetos_factura = data.get("objetosfactura", [])
+        costo_total = data.get("costototal", None)
+        iva = data.get("iva", None)
+
+        if id_factura is not None and cedula_paciente is not None and costo_total is not None and iva is not None:
+            facturacion = Facturacion(
+                id=id_factura,
+                cedulapaciente=cedula_paciente,
+                objetosfactura=objetos_factura,
+                costototal=costo_total,
+                iva=iva
+            )
+            facturacion.save()
+            return HttpResponse("Facturacion created successfully")
+        else:
+            return HttpResponse("Some required fields are missing", status=400)
+    else:
+        return HttpResponse("Invalid request method", status=405)
